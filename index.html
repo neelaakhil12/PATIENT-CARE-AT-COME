@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Care At Home | Quality Care. Right At Home.</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Professional, trustworthy, and compassionate home patient care services including 24/7 caretaking, nursing, physiotherapy, and medical equipment at home.">
+    <meta name="keywords" content="Patient Care, Home Healthcare, 24/7 Nursing, Physiotherapy at home, Medical Equipment Hyderabad">
+    <meta name="author" content="Patient Care At Home">
+
+    <!-- Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                primary: '#0D47A1',     // Deep Medical Blue
+                secondary: '#1976D2',   // Bright Blue
+                accent: '#42A5F5',      // Cyan Blue
+                highlight: '#00B894',   // Fresh Green
+                light: '#F5FAFF',       // Soft Light Blue
+                darkText: '#1E293B',    // Dark Slate
+                lightText: '#64748B',   // Light Slate
+                darkBlue: '#091B31'     // Premium Dark Blue
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              poppins: ['Poppins', 'sans-serif']
+            },
+            boxShadow: {
+              'premium': '0 10px 30px -10px rgba(13, 71, 161, 0.1)',
+              'glow': '0 0 20px rgba(66, 165, 245, 0.4)',
+              'glass': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.5)'
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS Styles -->
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(25, 118, 210, 0.6);
+        }
+        /* Custom smooth pulses */
+        @keyframes pulse-custom {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            50% { transform: scale(1.08); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        }
+        @keyframes pulse-blue {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(13, 71, 161, 0.6); }
+            50% { transform: scale(1.08); box-shadow: 0 0 0 15px rgba(13, 71, 161, 0); }
+        }
+        .pulse-whatsapp {
+            animation: pulse-custom 2s infinite;
+        }
+        .pulse-call {
+            animation: pulse-blue 2s infinite;
+        }
+
+        /* ── Splash Screen ── */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: linear-gradient(135deg, #091B31 0%, #0D47A1 60%, #1976D2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        /* Animated border box around the brand name */
+        .splash-box {
+            position: relative;
+            padding: 1.25rem 1rem;
+            width: calc(100% - 2.5rem);
+            max-width: 320px;
+            border: 2px solid rgba(66,165,245,0.35);
+            border-radius: 1rem;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            animation: splash-box-in 0.7s cubic-bezier(0.22,1,0.36,1) both;
+            box-sizing: border-box;
+        }
+        @media (min-width: 640px) {
+            .splash-box {
+                padding: 2rem 3rem;
+                width: auto;
+                max-width: none;
+            }
+        }
+        @keyframes splash-box-in {
+            from { transform: scale(0.6); opacity: 0; }
+            to   { transform: scale(1);   opacity: 1; }
+        }
+        /* Glowing border corners */
+        .splash-box::before,
+        .splash-box::after {
+            content: '';
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border-color: #42A5F5;
+            border-style: solid;
+        }
+        .splash-box::before {
+            top: -3px; left: -3px;
+            border-width: 3px 0 0 3px;
+            border-radius: 6px 0 0 0;
+        }
+        .splash-box::after {
+            bottom: -3px; right: -3px;
+            border-width: 0 3px 3px 0;
+            border-radius: 0 0 6px 0;
+        }
+        /* Extra corners via child spans */
+        .splash-box .corner-tr,
+        .splash-box .corner-bl {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border-color: #42A5F5;
+            border-style: solid;
+        }
+        .splash-box .corner-tr {
+            top: -3px; right: -3px;
+            border-width: 3px 3px 0 0;
+            border-radius: 0 6px 0 0;
+        }
+        .splash-box .corner-bl {
+            bottom: -3px; left: -3px;
+            border-width: 0 0 3px 3px;
+            border-radius: 0 0 0 6px;
+        }
+        /* Tagline fade-in */
+        .splash-tagline {
+            color: rgba(66,165,245,0.9);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            animation: splash-fade-up 1s 0.4s both;
+            text-align: center;
+            width: 100%;
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+        }
+        @keyframes splash-fade-up {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        /* Blinking cursor after typed text */
+        #typing-text::after {
+            content: '|';
+            animation: blink 0.75s step-end infinite;
+            color: #42A5F5;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0; }
+        }
+        /* Progress bar at bottom */
+        .splash-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #42A5F5, #00B894);
+            border-radius: 0 0 1rem 1rem;
+            animation: splash-progress 2.8s linear forwards;
+        }
+        @keyframes splash-progress {
+            from { width: 0%; }
+            to   { width: 100%; }
+        }
+        body.splash-active {
+            overflow: hidden !important;
+            height: 100vh !important;
+        }
+        /* Responsive typing text */
+        #typing-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.03em;
+            min-height: 2rem;
+            line-height: 1.2;
+            margin: 0;
+            display: inline-block;
+        }
+        @media (min-width: 640px) {
+            #typing-text {
+                font-size: 1.7rem;
+                min-height: 2.5rem;
+            }
+        }
+        /* Responsive logo elements */
+        .splash-logo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .splash-logo-container {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(66,165,245,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        .splash-logo-container svg {
+            width: 30px;
+            height: 30px;
+            transition: all 0.3s ease;
+        }
+        @media (min-width: 640px) {
+            .splash-logo-container {
+                width: 80px;
+                height: 80px;
+            }
+            .splash-logo-container svg {
+                width: 44px;
+                height: 44px;
+            }
+            .splash-logo-wrapper {
+                margin-bottom: 1.25rem;
+            }
+        }
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body class="light-hero bg-brand-light font-sans text-brand-darkText splash-active">
+
+<!-- ═══════════════════════════════════════════
+     SPLASH SCREEN
+═══════════════════════════════════════════ -->
+<div id="splash-screen" role="status" aria-label="Loading Patient Care At Home">
+    <div class="splash-box">
+        <!-- Glowing corner accents -->
+        <span class="corner-tr"></span>
+        <span class="corner-bl"></span>
+
+        <!-- Animated pulse ring behind logo -->
+        <div class="splash-logo-wrapper">
+            <div class="splash-logo-container">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#42A5F5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+            </div>
+            <div style="position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(66,165,245,0.3);animation:splash-pulse 1.8s ease-out infinite;"></div>
+        </div>
+
+        <!-- Typewriter brand name -->
+        <h1 id="typing-text"></h1>
+
+        <!-- Animated progress bar -->
+        <div class="splash-progress"></div>
+    </div>
+
+    <p class="splash-tagline" style="font-family:'Inter',sans-serif;">Quality Care &bull; Right At Home</p>
+</div>
+
+<style>
+@keyframes splash-pulse {
+    0%   { transform: scale(1);   opacity: 0.6; }
+    70%  { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+</style>
+
+    <!-- STICKY NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5" id="navbar-container">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center group">
+                    <img src="assets/images/logo.png" alt="Patient Care At Home Logo" class="h-8 sm:h-12 w-auto transform group-hover:scale-105 transition-all">
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium">
+                    <a href="index.html" class="text-brand-primary border-b-2 border-brand-primary pb-1 transition-colors">Home</a>
+                    <a href="services.html" class="text-brand-lightText hover:text-brand-primary hover:border-b-2 hover:border-brand-accent pb-1 transition-colors">Services</a>
+                    <a href="story.html" class="text-brand-lightText hover:text-brand-primary hover:border-b-2 hover:border-brand-accent pb-1 transition-colors">Our Story</a>
+                    <a href="contact.html" class="text-brand-lightText hover:text-brand-primary hover:border-b-2 hover:border-brand-accent pb-1 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Desktop CTA Button -->
+                <div class="hidden md:block">
+                    <a href="contact.html" class="px-6 py-2.5 rounded-full bg-brand-primary text-white font-medium hover:bg-brand-secondary transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Book Service
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-brand-primary focus:outline-none" aria-label="Toggle Menu">
+                    <div class="w-6 h-5 flex flex-col justify-between">
+                        <span class="w-full h-0.5 bg-current rounded transition-all duration-300"></span>
+                        <span class="w-full h-0.5 bg-current rounded transition-all duration-300"></span>
+                        <span class="w-full h-0.5 bg-current rounded transition-all duration-300"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-white border-b border-blue-100 shadow-xl flex-col px-6 py-6 space-y-4 animate-fade-in">
+            <a href="index.html" class="text-brand-primary font-semibold text-lg py-2 border-b border-blue-50">Home</a>
+            <a href="services.html" class="text-brand-lightText hover:text-brand-primary font-medium text-lg py-2 border-b border-blue-50">Services</a>
+            <a href="story.html" class="text-brand-lightText hover:text-brand-primary font-medium text-lg py-2 border-b border-blue-50">Our Story</a>
+            <a href="contact.html" class="text-brand-lightText hover:text-brand-primary font-medium text-lg py-2">Contact</a>
+            <a href="contact.html" class="w-full py-3 rounded-xl bg-brand-primary text-white text-center font-medium shadow-md block">Book Service</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-24 md:pt-40 md:pb-36 bg-gradient-to-br from-blue-50 via-white to-blue-50/50 overflow-hidden">
+        <!-- Floating shapes -->
+        <div class="absolute top-10 right-10 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-10 left-10 w-80 h-80 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left" data-aos="fade-up" data-aos-duration="1000">
+                    <span class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-blue-100 text-brand-primary shadow-sm border border-blue-200">
+                        <i data-lucide="shield-check" class="w-4 h-4 mr-2"></i> Trusted Home Healthcare Partner
+                    </span>
+                    <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold font-poppins tracking-tight text-brand-primary leading-tight">
+                        Quality Care.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-secondary to-brand-accent">Right At Home.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-brand-lightText font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Professional care. Personal touch. Because your loved ones deserve the best medical support, comfort, and compassion right where they feel safest.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="contact.html" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-center btn-glow transform hover:-translate-y-0.5">
+                            Book Service
+                        </a>
+                        <a href="tel:+919490989550" class="w-full sm:w-auto px-8 py-4 bg-white text-brand-primary border border-blue-100 font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-center flex items-center justify-center space-x-2 transform hover:-translate-y-0.5">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                            <span>Call +91 9490989550</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image with soft shapes -->
+                <div class="lg:col-span-5 relative" data-aos="zoom-in" data-aos-duration="1200">
+                    <div class="relative mx-auto max-w-[480px] lg:max-w-none">
+                        <!-- Decorative Background Blob -->
+                        <div class="absolute -inset-4 bg-gradient-to-tr from-brand-secondary to-brand-accent rounded-3xl opacity-10 blur-xl"></div>
+                        <!-- Main Image Container -->
+                        <div class="relative bg-white p-3 rounded-3xl shadow-2xl border border-blue-50 overflow-hidden transform hover:scale-[1.02] transition-transform duration-500">
+                            <img src="assets/images/hero_caregiver.png" alt="Nurse caring for elderly patient at home" class="w-full h-auto rounded-2xl object-cover">
+                        </div>
+                        
+                        <!-- Floating Badges -->
+                        <div class="absolute -top-6 -left-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-blue-50 flex items-center space-x-3 animate-bounce" style="animation-duration: 3s;">
+                            <div class="w-10 h-10 rounded-xl bg-teal-500 flex items-center justify-center text-white">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-brand-darkText">5-Star Services</h4>
+                                <p class="text-xs text-brand-lightText">Verified by families</p>
+                            </div>
+                        </div>
+
+                        <div class="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-blue-50 flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-primary flex items-center justify-center text-white">
+                                <i data-lucide="users" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-brand-darkText">24/7 Availability</h4>
+                                <p class="text-xs text-brand-lightText">Round the clock care</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT PREVIEW SECTION -->
+    <section class="py-24 bg-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Side: Graphic / Experience Badge -->
+                <div class="space-y-6" data-aos="fade-right" data-aos-duration="1000">
+                    <span class="text-brand-secondary font-bold tracking-wider text-sm uppercase">Who We Are</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold font-poppins text-brand-primary leading-snug">
+                        Providing Trusted & Compassionate Healthcare Services At Home
+                    </h2>
+                    <p class="text-brand-lightText leading-relaxed">
+                        Patient Care At Home is committed to bridging the gap between hospital-level medical support and the comfort of your home. We understand the physical and emotional challenges families face when caring for elderly or recovering loved ones. 
+                    </p>
+                    <p class="text-brand-lightText leading-relaxed">
+                        Our highly trained nurses, caretakers, and physical therapists provide personalized care plans structured around safety, medical guidance, and emotional companionship.
+                    </p>
+                    <div class="pt-4">
+                        <a href="story.html" class="inline-flex items-center text-brand-primary font-bold hover:text-brand-secondary transition-colors group">
+                            Read Our Full Story 
+                            <i data-lucide="arrow-right" class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Side: Stats Grid -->
+                <div class="grid grid-cols-2 gap-3 sm:gap-6" data-aos="fade-left" data-aos-duration="1000">
+                    <!-- Stat Card 1 -->
+                    <div class="p-4 sm:p-8 rounded-2xl bg-brand-light border border-blue-100 flex flex-col justify-between shadow-premium transform hover:-translate-y-1 transition-all duration-300">
+                        <div>
+                            <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-blue-100 flex items-center justify-center text-brand-primary mb-3 sm:mb-6">
+                                <i data-lucide="users" class="w-4 h-4 sm:w-6 sm:h-6"></i>
+                            </div>
+                            <span class="text-2xl sm:text-4xl font-extrabold font-poppins text-brand-primary stat-counter" data-target="10000" data-suffix="+">0+</span>
+                        </div>
+                        <p class="text-xs sm:text-sm font-semibold text-brand-lightText mt-2 sm:mt-4 uppercase tracking-wider">Patients Served</p>
+                    </div>
+
+                    <!-- Stat Card 2 -->
+                    <div class="p-4 sm:p-8 rounded-2xl bg-blue-50/50 border border-blue-100 flex flex-col justify-between shadow-premium transform hover:-translate-y-1 transition-all duration-300">
+                        <div>
+                            <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-teal-100 flex items-center justify-center text-brand-highlight mb-3 sm:mb-6">
+                                <i data-lucide="heart" class="w-4 h-4 sm:w-6 sm:h-6"></i>
+                            </div>
+                            <span class="text-2xl sm:text-4xl font-extrabold font-poppins text-brand-primary stat-counter" data-target="500" data-suffix="+">0+</span>
+                        </div>
+                        <p class="text-xs sm:text-sm font-semibold text-brand-lightText mt-2 sm:mt-4 uppercase tracking-wider">Active Caretakers</p>
+                    </div>
+
+                    <!-- Stat Card 3 -->
+                    <div class="p-4 sm:p-8 rounded-2xl bg-blue-50/50 border border-blue-100 flex flex-col justify-between shadow-premium transform hover:-translate-y-1 transition-all duration-300">
+                        <div>
+                            <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600 mb-3 sm:mb-6">
+                                <i data-lucide="award" class="w-4 h-4 sm:w-6 sm:h-6"></i>
+                            </div>
+                            <span class="text-2xl sm:text-4xl font-extrabold font-poppins text-brand-primary stat-counter" data-target="10" data-suffix="+">0+</span>
+                        </div>
+                        <p class="text-xs sm:text-sm font-semibold text-brand-lightText mt-2 sm:mt-4 uppercase tracking-wider">Years of Trust</p>
+                    </div>
+
+                    <!-- Stat Card 4 -->
+                    <div class="p-4 sm:p-8 rounded-2xl bg-brand-light border border-blue-100 flex flex-col justify-between shadow-premium transform hover:-translate-y-1 transition-all duration-300">
+                        <div>
+                            <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-green-100 flex items-center justify-center text-green-600 mb-3 sm:mb-6">
+                                <i data-lucide="activity" class="w-4 h-4 sm:w-6 sm:h-6"></i>
+                            </div>
+                            <span class="text-2xl sm:text-4xl font-extrabold font-poppins text-brand-primary stat-counter" data-target="99" data-suffix="%">0%</span>
+                        </div>
+                        <p class="text-xs sm:text-sm font-semibold text-brand-lightText mt-2 sm:mt-4 uppercase tracking-wider">Satisfaction Rate</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES OVERVIEW SECTION -->
+    <section class="py-24 bg-brand-light relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Title -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-brand-secondary font-bold tracking-wider text-sm uppercase">Our Services</span>
+                <h2 class="text-2xl sm:text-3xl font-bold font-poppins text-brand-primary">
+                    Tailored Healthcare Solutions At Home
+                </h2>
+                <div class="w-20 h-1 bg-brand-accent mx-auto rounded-full"></div>
+                <p class="text-brand-lightText">
+                    We offer professional healthcare support configured for the specific recovery, chronic care, or wellness needs of your family members.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1: Care Taker -->
+                <div class="glass-card rounded-2xl p-6 shadow-premium hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <!-- Icon Circle -->
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-primary to-brand-accent flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="users" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-poppins text-brand-primary mb-3">Care Taker 24/7</h3>
+                        <p class="text-brand-lightText text-sm leading-relaxed mb-6">
+                            Compassionate and reliable caretakers available round the clock to support with daily activities, safety, and companionship.
+                        </p>
+                    </div>
+                    <a href="services.html#caretaker" class="inline-flex items-center text-brand-secondary font-semibold group/link hover:text-brand-primary transition-colors text-sm">
+                        Learn More <i data-lucide="chevron-right" class="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2: Nursing -->
+                <div class="glass-card rounded-2xl p-6 shadow-premium hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-primary to-brand-accent flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="heart-pulse" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-poppins text-brand-primary mb-3">Nursing 24/7</h3>
+                        <p class="text-brand-lightText text-sm leading-relaxed mb-6">
+                            Skilled, certified, and vetted clinical nurses providing medical administration, wound dressing, and vitals monitoring.
+                        </p>
+                    </div>
+                    <a href="services.html#nursing" class="inline-flex items-center text-brand-secondary font-semibold group/link hover:text-brand-primary transition-colors text-sm">
+                        Learn More <i data-lucide="chevron-right" class="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3: Physiotherapy -->
+                <div class="glass-card rounded-2xl p-6 shadow-premium hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-primary to-brand-accent flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="activity" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-poppins text-brand-primary mb-3">Physiotherapy</h3>
+                        <p class="text-brand-lightText text-sm leading-relaxed mb-6">
+                            Personalized physiotherapy, post-operative exercises, stroke rehab, and mobility sessions in the safety of your home.
+                        </p>
+                    </div>
+                    <a href="services.html#physiotherapy" class="inline-flex items-center text-brand-secondary font-semibold group/link hover:text-brand-primary transition-colors text-sm">
+                        Learn More <i data-lucide="chevron-right" class="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Service 4: Medical Equipment -->
+                <div class="glass-card rounded-2xl p-6 shadow-premium hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="400">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-primary to-brand-accent flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="hospital" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold font-poppins text-brand-primary mb-3">Equipment Support</h3>
+                        <p class="text-brand-lightText text-sm leading-relaxed mb-6">
+                            High-quality medical equipment including hospital beds, oxygen concentrators, and wheelchairs available for rent or purchase.
+                        </p>
+                    </div>
+                    <a href="services.html#equipment" class="inline-flex items-center text-brand-secondary font-semibold group/link hover:text-brand-primary transition-colors text-sm">
+                        Learn More <i data-lucide="chevron-right" class="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US SECTION -->
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Side: Title and Feature List -->
+                <div class="space-y-8" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="space-y-4">
+                        <span class="text-brand-secondary font-bold tracking-wider text-sm uppercase">Why Families Trust Us</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold font-poppins text-brand-primary">
+                            Healthcare Managed with Love & Professional Rigor
+                        </h2>
+                        <p class="text-brand-lightText leading-relaxed">
+                            Deciding on home healthcare requires deep trust. We ensure that our processes are fully verified, keeping patient dignity and medical safety at the forefront of everything we do.
+                        </p>
+                    </div>
+
+                    <!-- Features Layout -->
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-blue-50/50 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-brand-primary shrink-0">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-brand-primary">Trained & Verified Professionals</h4>
+                                <p class="text-sm text-brand-lightText mt-1">Every staff member goes through extensive background verification, medical competency evaluations, and soft skill training.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-blue-50/50 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-brand-primary shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-brand-primary">24/7 Availability</h4>
+                                <p class="text-sm text-brand-lightText mt-1">We maintain active medical staff cycles ensuring constant updates, overnight duties, and shift handovers with absolute reliability.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-blue-50/50 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-brand-primary shrink-0">
+                                <i data-lucide="home" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-brand-primary">Comfort of Home</h4>
+                                <p class="text-sm text-brand-lightText mt-1">Allowing recovering patients to reside with family significantly boosts moral and mental health, expediting recovery timelines.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-blue-50/50 transition-colors">
+                            <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-brand-primary shrink-0">
+                                <i data-lucide="heart" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-brand-primary">Compassionate Care</h4>
+                                <p class="text-sm text-brand-lightText mt-1">We don't just treat physical illnesses; we provide emotional support, engage in conversation, and offer companionship to reduce isolation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Graphic/Visual Representation -->
+                <div class="relative flex justify-center" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="relative bg-gradient-to-tr from-brand-primary to-brand-accent rounded-3xl p-1 shadow-2xl overflow-hidden max-w-[450px]">
+                        <div class="absolute -inset-4 bg-blue-100 rounded-3xl opacity-10 blur-xl"></div>
+                        <img src="assets/images/service_caretaker.png" alt="Caretaker assisting elderly patient at home" class="rounded-[22px] w-full object-cover">
+                        <!-- Floating Trust Seal -->
+                        <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-xl flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-brand-primary text-md">ISO 9001:2015 Certified</h5>
+                                <p class="text-xs text-brand-lightText">Standardized home healthcare protocols</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="py-24 bg-brand-light overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Title -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-brand-secondary font-bold tracking-wider text-sm uppercase">Testimonials</span>
+                <h2 class="text-2xl sm:text-3xl font-bold font-poppins text-brand-primary">
+                    Stories of Relief & Healing From Grateful Families
+                </h2>
+                <div class="w-20 h-1 bg-brand-accent mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Testimonial Slider Container -->
+            <div class="max-w-4xl mx-auto testimonial-container relative">
+                <!-- Navigation Buttons -->
+                <button id="testimonial-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-brand-primary hover:text-white hover:bg-brand-primary transition-all z-10 focus:outline-none">
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+                <button id="testimonial-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-brand-primary hover:text-white hover:bg-brand-primary transition-all z-10 focus:outline-none">
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
+
+                <!-- Slides wrapper -->
+                <div class="bg-white rounded-3xl p-8 md:p-12 shadow-premium border border-blue-50 relative min-h-[300px] flex items-center overflow-hidden">
+                    <i data-lucide="quote" class="absolute top-6 right-8 w-20 h-20 text-blue-100 opacity-50 fill-current pointer-events-none"></i>
+                    
+                    <!-- Slide 1 -->
+                    <div class="testimonial-slide flex flex-col md:flex-row items-center md:items-start gap-8 transition-opacity duration-500">
+                        <div class="w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center text-brand-primary shrink-0 border-2 border-brand-accent shadow-md overflow-hidden">
+                            <span class="text-3xl font-bold">MK</span>
+                        </div>
+                        <div class="space-y-4 text-center md:text-left">
+                            <div class="flex items-center justify-center md:justify-start text-yellow-400">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="text-brand-darkText text-lg italic leading-relaxed">
+                                "The 24/7 nursing service provided for my grandfather after his cardiac surgery was outstanding. The nurses were highly professional, regular with vitals, and incredibly kind. We had total peace of mind."
+                            </p>
+                            <div>
+                                <h4 class="font-bold text-brand-primary text-lg">Mahesh Kumar</h4>
+                                <p class="text-sm text-brand-lightText">Gachibowli, Hyderabad</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="testimonial-slide hidden flex flex-col md:flex-row items-center md:items-start gap-8 transition-opacity duration-500">
+                        <div class="w-24 h-24 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 shrink-0 border-2 border-teal-300 shadow-md overflow-hidden">
+                            <span class="text-3xl font-bold">PR</span>
+                        </div>
+                        <div class="space-y-4 text-center md:text-left">
+                            <div class="flex items-center justify-center md:justify-start text-yellow-400">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="text-brand-darkText text-lg italic leading-relaxed">
+                                "We hired a caretaker for my mother who lives alone. The caretaker was like family to her, helping with medication, food preparation, and walks. It's rare to find such compassionate care."
+                            </p>
+                            <div>
+                                <h4 class="font-bold text-brand-primary text-lg">Priyanka Reddy</h4>
+                                <p class="text-sm text-brand-lightText">Madhapur, Hyderabad</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="testimonial-slide hidden flex flex-col md:flex-row items-center md:items-start gap-8 transition-opacity duration-500">
+                        <div class="w-24 h-24 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 shrink-0 border-2 border-purple-300 shadow-md overflow-hidden">
+                            <span class="text-3xl font-bold">AS</span>
+                        </div>
+                        <div class="space-y-4 text-center md:text-left">
+                            <div class="flex items-center justify-center md:justify-start text-yellow-400">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="text-brand-darkText text-lg italic leading-relaxed">
+                                "The physiotherapy sessions at home helped my son recover from a complex sports fracture. The therapist was patient, highly skilled, and explained every movement. I highly recommend them!"
+                            </p>
+                            <div>
+                                <h4 class="font-bold text-brand-primary text-lg">Anil Sharma</h4>
+                                <p class="text-sm text-brand-lightText">Secunderabad, Telangana</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide Indicators/Dots -->
+                <div class="flex justify-center space-x-2 mt-8">
+                    <button class="testimonial-dot h-2 rounded-full transition-all duration-300 bg-brand-primary w-6" aria-label="Slide 1"></button>
+                    <button class="testimonial-dot h-2 rounded-full transition-all duration-300 bg-blue-200 w-2" aria-label="Slide 2"></button>
+                    <button class="testimonial-dot h-2 rounded-full transition-all duration-300 bg-blue-200 w-2" aria-label="Slide 3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER SECTION -->
+    <section class="py-16 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent rounded-3xl p-12 md:p-16 shadow-2xl overflow-hidden" data-aos="zoom-in" data-aos-duration="1000">
+                <!-- Grid background shapes -->
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent opacity-50 pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-3xl space-y-6 text-white text-center md:text-left">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold font-poppins leading-tight">
+                        Better Care. Better Life.
+                    </h2>
+                    <p class="text-lg text-blue-50 font-normal leading-relaxed max-w-2xl">
+                        Ready to secure the best care support for your loved ones? Contact our patient care counselors today and set up a customized plan.
+                    </p>
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+                        <a href="contact.html" class="w-full sm:w-auto px-8 py-4 bg-brand-highlight text-white font-bold rounded-full hover:bg-emerald-600 transition-all duration-300 text-center shadow-lg transform hover:-translate-y-0.5">
+                            Contact Us Today
+                        </a>
+                        <a href="tel:+919490989550" class="w-full sm:w-auto px-8 py-4 bg-white/10 border border-white/20 text-white font-bold rounded-full hover:bg-white/20 transition-all duration-300 text-center flex items-center justify-center space-x-2 transform hover:-translate-y-0.5">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                            <span>Call Center</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING BUTTONS — stacked on bottom-right -->
+    <!-- Phone Call Button (above WhatsApp) -->
+    <a href="tel:+919490989550"
+       class="fixed bottom-24 right-6 z-40 w-14 h-14 bg-brand-primary text-white rounded-full flex items-center justify-center shadow-2xl pulse-call cursor-pointer"
+       aria-label="Call Patient Care">
+        <i data-lucide="phone" class="w-6 h-6"></i>
+    </a>
+
+    <!-- WhatsApp Button (bottom-most) -->
+    <a href="https://wa.me/919490989550?text=Hello,%20I%20am%20interested%20in%20Patient%20Care%20At%20Home%20services.%20Please%20provide%20more%20details."
+       target="_blank" rel="noopener noreferrer"
+       class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl pulse-whatsapp cursor-pointer"
+       aria-label="Chat on WhatsApp">
+        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.733-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436.002 9.858-4.419 9.86-9.86.002-2.636-1.02-5.115-2.879-6.973-1.859-1.859-4.341-2.88-6.979-2.88-5.439 0-9.86 4.417-9.865 9.858-.002 1.763.473 3.487 1.377 4.993L1.93 21.054l5.35-1.401zm10.706-6.685c-.3-.15-1.77-.875-2.046-.975-.276-.1-.477-.15-.677.15-.2.3-.775.975-.95 1.175-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.485-.89-.794-1.49-1.775-1.665-2.075-.175-.3-.019-.462.13-.61.135-.133.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.677-1.625-.926-2.225-.244-.589-.492-.51-.677-.52-.175-.008-.376-.01-.577-.01-.2 0-.527.075-.803.375-.276.3-1.052 1.025-1.052 2.5 0 1.475 1.077 2.9 1.227 3.1.15.2 2.12 3.237 5.136 4.537.717.31 1.277.494 1.713.633.722.23 1.38.197 1.9.119.58-.087 1.77-.725 2.02-1.388.25-.662.25-1.23.175-1.35-.075-.12-.275-.195-.575-.345z"/>
+        </svg>
+    </a>
+
+    <!-- PREMIUM FOOTER -->
+    <footer class="bg-brand-darkBlue text-white pt-20 pb-10 relative overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+                <!-- Column 1: Info -->
+                <div class="lg:col-span-4 space-y-6">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/images/logo.png" alt="Patient Care At Home Logo" class="h-12 w-auto bg-white p-1.5 rounded-xl">
+                    </a>
+                    <p class="text-sm text-blue-100/70 leading-relaxed max-w-sm">
+                        Professional, trustworthy, and compassionate home healthcare support tailored around your family's needs. Providing medical and caretaking excellence.
+                    </p>
+                    <!-- Social icons -->
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-100 hover:bg-brand-accent hover:text-white transition-all" aria-label="Facebook">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-100 hover:bg-brand-accent hover:text-white transition-all" aria-label="Twitter">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-100 hover:bg-brand-accent hover:text-white transition-all" aria-label="Instagram">
+                            <svg class="w-5 h-5 stroke-current fill-none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-100 hover:bg-brand-accent hover:text-white transition-all" aria-label="Linkedin">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="lg:col-span-2 space-y-6">
+                    <h3 class="text-md font-bold uppercase tracking-wider text-brand-accent font-poppins">Quick Links</h3>
+                    <ul class="space-y-3 text-sm text-blue-100/70">
+                        <li><a href="index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="services.html" class="hover:text-brand-accent transition-colors">Services</a></li>
+                        <li><a href="story.html" class="hover:text-brand-accent transition-colors">Our Story</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-accent transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Services Links -->
+                <div class="lg:col-span-3 space-y-6">
+                    <h3 class="text-md font-bold uppercase tracking-wider text-brand-accent font-poppins">Services</h3>
+                    <ul class="space-y-3 text-sm text-blue-100/70">
+                        <li><a href="services.html#caretaker" class="hover:text-brand-accent transition-colors">Care Taker 24/7</a></li>
+                        <li><a href="services.html#nursing" class="hover:text-brand-accent transition-colors">Nursing 24/7</a></li>
+                        <li><a href="services.html#physiotherapy" class="hover:text-brand-accent transition-colors">Physiotherapy At Home</a></li>
+                        <li><a href="services.html#equipment" class="hover:text-brand-accent transition-colors">Medical Equipment</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Contact details -->
+                <div class="lg:col-span-3 space-y-6">
+                    <h3 class="text-md font-bold uppercase tracking-wider text-brand-accent font-poppins">Contact Info</h3>
+                    <ul class="space-y-4 text-sm text-blue-100/70">
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-brand-accent shrink-0 mt-0.5"></i>
+                            <span>Sai Sadan, Gachibowli, Hyderabad, Telangana, 500032</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-brand-accent shrink-0"></i>
+                            <span>+91 9490989550</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-brand-accent shrink-0"></i>
+                            <span>care@patientcareathome.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer Area -->
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-blue-100/40">
+                <p>© 2026 Patient Care At Home. All Rights Reserved.</p>
+                <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-brand-accent transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-accent transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Animation Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Lucide Icons JS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Main Project JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

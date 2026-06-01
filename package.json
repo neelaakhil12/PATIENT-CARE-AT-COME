@@ -1,0 +1,17 @@
+{
+  "name": "patient-care-at-home",
+  "version": "1.0.0",
+  "description": "Modern Static Healthcare Website - Patient Care At Home",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx lite-server",
+    "start": "npx lite-server"
+  },
+  "keywords": [
+    "healthcare",
+    "patient-care",
+    "static-site"
+  ],
+  "author": "Patient Care At Home",
+  "license": "ISC"
+}
