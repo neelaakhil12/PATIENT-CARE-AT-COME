@@ -173,7 +173,13 @@
                     <div class="relative bg-white p-4 rounded-3xl shadow-premium border border-blue-100/60 overflow-hidden max-w-[360px] mx-auto group">
                         <!-- Decorative glow -->
                         <div class="absolute inset-0 bg-gradient-to-tr from-brand-primary/10 via-transparent to-brand-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                        <img src="assets/images/founder.png" alt="Founder of Patient Care At Home" class="w-full h-auto rounded-2xl object-cover transform group-hover:scale-102 transition-transform duration-500">
+                        <!-- Fixed height container to crop top & bottom -->
+                        <div class="w-full overflow-hidden rounded-2xl" style="height: 420px;">
+                            <img src="assets/images/founder.png" alt="Founder of Patient Care At Home"
+                                 style="width: 100%; height: 100%; object-fit: cover; object-position: center 15%; transform: none; transition: transform 0.5s ease;"
+                                 onmouseover="this.style.transform='scale(1.02)'"
+                                 onmouseout="this.style.transform='scale(1)'">
+                        </div>
                     </div>
                 </div>
 
