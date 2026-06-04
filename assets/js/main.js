@@ -278,8 +278,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Successful Submit Action: show toast and clear form
-            showToast('Thank you! Your request has been sent. We will get back to you shortly.', 'success');
+            // Construct the WhatsApp message text
+            const serviceLabelMap = {
+                'caretaker': 'Care Taker 24/7',
+                'nursing': 'Nursing 24/7',
+                'physiotherapy': 'Physiotherapy At Home',
+                'equipment': 'Medical Equipment At Home',
+                'general': 'General Consultation'
+            };
+            const serviceLabel = serviceLabelMap[serviceVal] || serviceVal;
+
+            const whatsappText = `Hello Patient Care At Home,\n\nI would like to request a home healthcare service. Here are my details:\n\n` +
+                `• *Name*: ${nameVal}\n` +
+                `• *Phone*: ${phoneVal}\n` +
+                `• *Email*: ${emailVal}\n` +
+                `• *Service*: ${serviceLabel}\n` +
+                `• *Message/Requirements*: ${messageVal}`;
+
+            const encodedText = encodeURIComponent(whatsappText);
+            const whatsappUrl = `https://wa.me/919490989550?text=${encodedText}`;
+
+            // Successful Submit Action: show toast, redirect to WhatsApp, and clear form
+            showToast('Thank you! Redirecting you to WhatsApp...', 'success');
+            window.open(whatsappUrl, '_blank');
             contactForm.reset();
         });
     }
